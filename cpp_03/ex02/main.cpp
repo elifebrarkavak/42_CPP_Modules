@@ -5,29 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 20:49:36 by elikavak          #+#    #+#             */
-/*   Updated: 2025/06/27 16:05:00 by elikavak         ###   ########.fr       */
+/*   Created: 2025/07/03 22:08:22 by elikavak          #+#    #+#             */
+/*   Updated: 2025/07/03 22:08:22 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-
-int main() 
-{
-    std::cout<<"-----------------------------------------------------------"<<std::endl;
-    std::cout<<"                      WAR WITH Beyza AND Samet                       "<<std::endl;
-    Weapon club("crude spiked club");
-    HumanA beyza("Beyza", club);
-    beyza.attack();
-    club.setType("some other type of club");
-    beyza.attack();
-
-    Weapon knife("knife");
-    HumanB samet("Samet");
-    samet.attack();
-    samet.setWeapon(knife);
-    samet.attack();
-
-    return 0;
-}

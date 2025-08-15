@@ -5,29 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 20:49:36 by elikavak          #+#    #+#             */
-/*   Updated: 2025/06/27 16:05:00 by elikavak         ###   ########.fr       */
+/*   Created: 2025/07/03 22:08:22 by elikavak          #+#    #+#             */
+/*   Updated: 2025/07/03 22:08:22 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "DiamondTrap.hpp"
 
-int main() 
-{
-    std::cout<<"-----------------------------------------------------------"<<std::endl;
-    std::cout<<"                      WAR WITH Beyza AND Samet                       "<<std::endl;
-    Weapon club("crude spiked club");
-    HumanA beyza("Beyza", club);
-    beyza.attack();
-    club.setType("some other type of club");
-    beyza.attack();
+int main() { //değiştir
+    std::cout << "\n--- Creating DiamondTrap ---\n";
+    DiamondTrap d("Eda");
 
-    Weapon knife("knife");
-    HumanB samet("Samet");
-    samet.attack();
-    samet.setWeapon(knife);
-    samet.attack();
+    d.attack("Monster");
+    d.takeDamage(40);
+    d.beRepaired(20);
+    d.highFivesGuys();
+    d.guardGate();
+    d.whoAmI();
 
+    std::cout << "\n--- End of Program ---\n";
     return 0;
 }

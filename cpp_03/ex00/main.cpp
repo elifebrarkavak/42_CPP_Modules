@@ -5,29 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/23 20:49:36 by elikavak          #+#    #+#             */
-/*   Updated: 2025/06/27 16:05:00 by elikavak         ###   ########.fr       */
+/*   Created: 2025/07/15 22:11:46 by elikavak          #+#    #+#             */
+/*   Updated: 2025/07/15 22:11:46 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "ClapTrap.hpp"
 
-int main() 
+int main()
 {
-    std::cout<<"-----------------------------------------------------------"<<std::endl;
-    std::cout<<"                      WAR WITH Beyza AND Samet                       "<<std::endl;
-    Weapon club("crude spiked club");
-    HumanA beyza("Beyza", club);
-    beyza.attack();
-    club.setType("some other type of club");
-    beyza.attack();
+	ClapTrap c1;
+	ClapTrap c2(c1);
 
-    Weapon knife("knife");
-    HumanB samet("Samet");
-    samet.attack();
-    samet.setWeapon(knife);
-    samet.attack();
+	ClapTrap c4("ebrar");
+	ClapTrap c3 = c4;
 
-    return 0;
+	c3.attack(c1.getName());
+	c1.takeDamage(c3.getEnergyPoints());
+	c1.beRepaired(1);
+	c1.attack(c3.getName());
 }
