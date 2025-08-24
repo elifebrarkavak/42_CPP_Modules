@@ -6,10 +6,9 @@
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 16:28:35 by elikavak          #+#    #+#             */
-/*   Updated: 2025/08/17 16:28:35 by elikavak         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:13:56 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Fixed.hpp"
 

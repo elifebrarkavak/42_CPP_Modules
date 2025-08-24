@@ -6,7 +6,7 @@
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:08:45 by elikavak          #+#    #+#             */
-/*   Updated: 2025/07/02 14:08:45 by elikavak         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:10:18 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ class ClapTrap
 		int energyPoints;
 		int damage;
 	public:
-		// Orthodox Canonical Form:
-		ClapTrap();                                     // Default constructor
-		ClapTrap(const ClapTrap& copy);                // Copy constructor
-		ClapTrap& operator=(const ClapTrap& other);     // Copy assignment operator
-		~ClapTrap();                                    // Destructor
+		ClapTrap();                                    
+		ClapTrap(const ClapTrap& copy);               
+		ClapTrap& operator=(const ClapTrap& other);     
+		~ClapTrap();                                    
 
 		ClapTrap(std::string name);
 

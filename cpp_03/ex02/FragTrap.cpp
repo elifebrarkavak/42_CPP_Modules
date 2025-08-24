@@ -6,7 +6,7 @@
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 21:44:26 by elikavak          #+#    #+#             */
-/*   Updated: 2025/07/03 21:44:26 by elikavak         ###   ########.fr       */
+/*   Updated: 2025/08/24 11:10:45 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,3 @@ void FragTrap::highFivesGuys(void)
 {
 	std::cout<<"FragTrap "<<this->name<<" requests a positive high five!"<<std::endl;
 }
-
-//atackt?

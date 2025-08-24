@@ -6,10 +6,9 @@
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 16:28:16 by elikavak          #+#    #+#             */
-/*   Updated: 2025/08/17 16:28:16 by elikavak         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:14:03 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FIXED_HPP
 #define FIXED_HPP

@@ -6,7 +6,7 @@
 /*   By: elikavak <elikavak@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 16:24:45 by elikavak          #+#    #+#             */
-/*   Updated: 2025/08/17 16:24:45 by elikavak         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:37:51 by elikavak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ class Fixed
         Fixed();
         Fixed(const int intNumber);
         Fixed(const float floatNumber);
-        Fixed(const Fixed &num);
+        Fixed(const Fixed &other);
 
-        Fixed& operator =(const Fixed &num);
+        Fixed& operator =(const Fixed &other);
 
         float toFloat( void ) const;
         int toInt( void ) const;
