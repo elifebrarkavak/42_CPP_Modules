@@ -1,13 +1,13 @@
-NAME    = identify
+NAME    = array
 CC      = c++
-FLAGS   = -Wall -Wextra -Werror -std=c++98
-SRCS    = main.cpp Base.cpp identify.cpp
+CFLAGS  = -Wall -Wextra -Werror -std=c++98
+SRCS    = main.cpp
 OBJS    = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
