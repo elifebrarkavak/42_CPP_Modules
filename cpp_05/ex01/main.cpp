@@ -5,8 +5,8 @@ int main()
 {
 	try
 	{
-		Bureaucrat ebr("Ebrar", 2);
-		Bureaucrat elf("Elif", 150);
+		Bureaucrat a("Ebrar", 2);
+		Bureaucrat b("Elif", 150);
 		
 		Form formA("Contract", 5, 20);
 		Form formB("Secret Document", 1, 1);
@@ -15,14 +15,14 @@ int main()
 		std::cout << formB << std::endl;
 
 		std::cout << "\n--- Test 1 ---" << std::endl;
-		ebr.signForm(formA);
+		a.signForm(formA);
 		std::cout << formA << std::endl;
 
 		std::cout << "\n--- Test 2 ---" << std::endl;
-		elf.signForm(formA);
+		b.signForm(formA);
 
 		std::cout << "\n--- Test 3 ---" << std::endl;
-		ebr.signForm(formB);
+		a.signForm(formB);
 
 	}
 	catch (std::exception &e)

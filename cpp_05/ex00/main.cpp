@@ -5,14 +5,14 @@ int main()
 	std::cout << "--- TEST 1 ---" << std::endl;
 	try
 	{
-		Bureaucrat ebr("Ebrar", 2);
-		std::cout << ebr << std::endl;
+		Bureaucrat a("Ebrar", 2);
+		std::cout << a << std::endl;
 	
-		ebr.incrementGrade(); 
-		std::cout << ebr << std::endl;
+		a.incrementGrade(); 
+		std::cout << a << std::endl;
 
-		ebr.decrementGrade(); 
-		std::cout << ebr << std::endl;
+		a.decrementGrade(); 
+		std::cout << a << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -22,7 +22,7 @@ int main()
 	std::cout << "\n--- TEST 2 ---" << std::endl;
 	try
 	{
-		Bureaucrat elf("Elif", 0);
+		Bureaucrat b("Elif", 0);
 	}
 	catch (std::exception &e)
 	{

@@ -1,9 +1,6 @@
 #ifndef AFORM_HPP
 # define AFORM_HPP
 
-# include <iostream>
-# include <string>
-# include <exception>
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -12,8 +9,8 @@ class AForm
 {
 	private:
 		const std::string	_name;
-		bool				_isSigned;
 		const int			_gradeToSign;
+		bool				_isSigned;
 		const int			_gradeToExecute;
 
 	public:

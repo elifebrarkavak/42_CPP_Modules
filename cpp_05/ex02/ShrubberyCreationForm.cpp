@@ -12,7 +12,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other), _target(other._target)
 {
-
+	
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
@@ -54,4 +54,4 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		file.close();
 	}
 
-}
+} 

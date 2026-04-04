@@ -1,20 +1,25 @@
 #include "AForm.hpp"
 
-AForm::AForm() : _name("Default"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) 
+AForm::AForm() : _name("Default"), _gradeToSign(150), _isSigned(false), _gradeToExecute(150) 
 {
 	
 }
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) 
-	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+	: _name(name), _gradeToSign(gradeToSign), _isSigned(false), _gradeToExecute(gradeToExecute)
 {
-	if (gradeToSign < 1 || gradeToExecute < 1) throw AForm::GradeTooHighException();
-	if (gradeToSign > 150 || gradeToExecute > 150) throw AForm::GradeTooLowException();
+	if (gradeToSign < 1 || gradeToExecute < 1)
+        throw AForm::GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExecute > 150)
+        throw AForm::GradeTooLowException();
 }
 
 AForm::AForm(const AForm &other) 
-	: _name(other._name), _isSigned(other._isSigned), 
-	  _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {}
+	: _name(other._name), _gradeToSign(other._gradeToSign), _isSigned(other._isSigned), 
+	  _gradeToExecute(other._gradeToExecute)
+{
+    
+}
 
 AForm &AForm::operator=(const AForm &other)
 {
@@ -71,9 +76,7 @@ const char *AForm::NotSignedException::what() const throw()
 
 std::ostream &operator<<(std::ostream &os, const AForm &f)
 {
-    os << "Form: " << f.getName();
-    
-    os << " | Signed: ";
+    os << "Form: " << f.getName() << " | Signed: ";
     if (f.getSigned() == true)
     {
         os << "Yes";
@@ -82,7 +85,6 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
     {
         os << "No";
     }
-
     os << " | Sign Grade: " << f.getGradeToSign();
     os << " | Exec Grade: " << f.getGradeToExecute();
 

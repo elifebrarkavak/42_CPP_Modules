@@ -4,33 +4,33 @@
 #include "PresidentialPardonForm.hpp"
 
 int main() {
-    Bureaucrat ebr("ebr", 1);
-    Bureaucrat elf("elf", 50);
-    Bureaucrat byz("byz", 138);
+    Bureaucrat a("Ebrar", 1);
+    Bureaucrat b("Elif", 50);
+    Bureaucrat c("Beyza", 138);
 
-    ShrubberyCreationForm shrub("home");
-    RobotomyRequestForm robo("Wall-e");
-    PresidentialPardonForm pardon("Arthur Dent");
+    ShrubberyCreationForm shrub("backyard");
+    RobotomyRequestForm robo("Marvin");
+    PresidentialPardonForm pardon("Criminal_X");
 
-	std::cout << "\n--- Shrubbery ---" << std::endl;
+	std::cout << "\n--- Shrubbery Test---" << std::endl;
 	
-	byz.executeForm(shrub);
-	byz.signForm(shrub);
-	byz.executeForm(shrub);
-	elf.executeForm(shrub);
+	c.executeForm(shrub);
+	c.signForm(shrub);
+	c.executeForm(shrub);
+	b.executeForm(shrub);
 
-	std::cout << "\n--- Robotomy ---" << std::endl;
+	std::cout << "\n--- Robotomy Test---" << std::endl;
 
-	elf.signForm(robo);
-	elf.executeForm(robo);
-	ebr.executeForm(robo);
+	b.signForm(robo);
+	b.executeForm(robo);
+	a.executeForm(robo);
 
-	std::cout << "\n--- Presidential Pardon ---" << std::endl;
+	std::cout << "\n--- Presidential Pardon Test---" << std::endl;
 	
-	elf.signForm(pardon);
-	ebr.signForm(pardon);
-	elf.executeForm(pardon);
-	ebr.executeForm(pardon);
+	b.signForm(pardon);
+	a.signForm(pardon);
+	b.executeForm(pardon);
+	a.executeForm(pardon);
 
     return 0;
 }
