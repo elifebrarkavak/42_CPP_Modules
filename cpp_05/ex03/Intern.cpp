@@ -21,44 +21,33 @@ Intern::~Intern()
 
 }
 
-static AForm	*makeShrubbery(const std::string target)
+AForm *Intern::makeForm(std::string form, std::string target)
 {
-	return (new ShrubberyCreationForm(target));
-}
+    std::string forms[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    int index = -1;
 
-static AForm	*makeRobotomy(const std::string target)
-{
-	return (new RobotomyRequestForm(target));
-}
-
-static AForm	*makePresidential(const std::string target)
-{
-	return (new PresidentialPardonForm(target));
-}
-
-AForm *Intern::makeForm(std::string formName, std::string target)
-{
-	std::string formNames[] = {
-		"shrubbery creation",
-		"robotomy request",
-		"presidential pardon"
-	};
-
-	AForm *(*formCreators[])(const std::string) = {
-		&makeShrubbery,
-		&makeRobotomy,
-		&makePresidential
-	};
-
-	for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
 	{
-		if (formName == formNames[i])
+        if (form == forms[i])
 		{
-			std::cout << "Intern creates " << formName << std::endl;
-			return (formCreators[i](target));
-		}
-	}
-	std::cout << "Intern cannot create " << formName << " because it doesn't exist." << std::endl;
+            index = i;
+            break;
+        }
+    }
 
-	return (NULL);
+    switch (index)
+	{
+        case 0:
+            std::cout << "Intern creates " << form << std::endl;
+            return new ShrubberyCreationForm(target);
+        case 1:
+            std::cout << "Intern creates " << form << std::endl;
+            return new RobotomyRequestForm(target);
+        case 2:
+            std::cout << "Intern creates " << form << std::endl;
+            return new PresidentialPardonForm(target);
+        default:
+            std::cout << "Error! Form '" << form << "' doesn't exist!" << std::endl;
+            return NULL;
+    }
 }

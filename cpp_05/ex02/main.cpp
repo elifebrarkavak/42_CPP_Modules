@@ -3,7 +3,9 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-int main() {
+int main()
+{
+	std::srand(std::time(NULL));
     Bureaucrat a("Ebrar", 1);
     Bureaucrat b("Elif", 50);
     Bureaucrat c("Beyza", 138);
@@ -32,5 +34,13 @@ int main() {
 	b.executeForm(pardon);
 	a.executeForm(pardon);
 
-    return 0;
+	std::cout << "--- Robotomy 10 Times Test ---" << std::endl;
+
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << "Attempt " << i + 1 << ":" << std::endl;
+		a.executeForm(robo);
+		std::cout << "----------------" << std::endl;
+	}
+	return 0;
 }

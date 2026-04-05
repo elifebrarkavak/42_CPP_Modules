@@ -23,6 +23,9 @@ int main()
 	try
 	{
 		Bureaucrat b("Elif", 0);
+
+		b.incrementGrade(); 
+		std::cout << b << std::endl;
 	}
 	catch (std::exception &e)
 	{

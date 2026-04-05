@@ -1,7 +1,6 @@
 #ifndef INTERN_HPP
 # define INTERN_HPP
 
-# include <iostream>
 # include "AForm.hpp"
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
