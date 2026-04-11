@@ -84,7 +84,12 @@ int main()
     std::srand(std::time(0));
 
     Base* ptr = generate();
-
+    if (ptr == NULL) 
+    {
+        std::cout << "Error: Failed to generate an object!!!" << std::endl;
+        return 1;
+    }   
+    
     identify(ptr);
     identify(*ptr);
 
