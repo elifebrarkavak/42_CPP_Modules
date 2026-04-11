@@ -23,15 +23,15 @@ ScalarConverter::~ScalarConverter()
 void ScalarConverter::convert(const std::string& param)
 {
     if (param == "nan" || param == "nanf" || param == "+inf" || 
-        param == "+inff" || param == "-inf" || param == "-inff")
+        param == "+inff" || param == "-inf" || param == "-inff" || param == "-nan" || param == "-nanf")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
 
-        if (param == "nan" || param == "nanf")
+        if (param == "nan" || param == "nanf" || param == "-nan" || param == "-nanf")
         {
             std::cout << "float: nanf" << std::endl;
-            std::cout << "double: nan" << std::endl;
+            std::cout << "double: nan" << std::endl;    
         }
         else 
         {
@@ -55,6 +55,32 @@ void ScalarConverter::convert(const std::string& param)
 
     try 
     {
+        if (param.length() > 1 && (param != "inf" && param != "inff")) 
+        {
+            bool hasDecimal = false;
+            bool hasF = false;
+            size_t i = 0;
+            if (param[i] == '+' || param[i] == '-') i++;
+
+            for (; i < param.length(); i++) 
+            {
+                if (param[i] == '.') 
+                {
+                    if (hasDecimal)
+                        throw std::exception();
+                    hasDecimal = true;
+                } 
+                else if (param[i] == 'f') 
+                {
+                    if (hasF || i != param.length() - 1) 
+                        throw std::exception();
+                    hasF = true;
+                } 
+                else if (!isdigit(param[i])) 
+                   throw std::exception();
+            }
+        }
+
         double val = std::stod(param);
 
         std::cout << "char: ";
