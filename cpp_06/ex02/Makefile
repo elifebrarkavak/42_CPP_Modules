@@ -1,7 +1,7 @@
 NAME    = identify
 CC      = c++
 FLAGS   = -Wall -Wextra -Werror -std=c++98
-SRCS    = main.cpp Base.cpp identify.cpp
+SRCS    = main.cpp Base.cpp
 OBJS    = $(SRCS:.cpp=.o)
 
 all: $(NAME)
