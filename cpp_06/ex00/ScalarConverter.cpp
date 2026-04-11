@@ -1,39 +1,61 @@
 #include "ScalarConverter.hpp"
 
-void ScalarConverter::convert(const std::string& literal)
+ScalarConverter::ScalarConverter()
 {
-    if (literal == "nan" || literal == "nanf" || literal == "+inf" || 
-        literal == "+inff" || literal == "-inf" || literal == "-inff")
+
+}
+ScalarConverter::ScalarConverter(const ScalarConverter& other)
+{
+    (void)other;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
+{
+    (void)other;
+    return *this;
+}
+
+ScalarConverter::~ScalarConverter()
+{
+
+}
+
+void ScalarConverter::convert(const std::string& param)
+{
+    if (param == "nan" || param == "nanf" || param == "+inf" || 
+        param == "+inff" || param == "-inf" || param == "-inff")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
 
-        if (literal.find("nan") != std::string::npos)
+        if (param == "nan" || param == "nanf")
         {
             std::cout << "float: nanf" << std::endl;
             std::cout << "double: nan" << std::endl;
         }
         else 
         {
-            std::string res;
+            int i = 0;
 
-            if (literal[0] == '+') 
+            if (param[0] == '-')
+                i = -1;
+            if (i == 0)
             {
-                res = "inf";
-            } 
-            else 
-            {
-                res = "-inf";
+                std::cout << "float: inff" << std::endl;
+                std::cout << "double: inf" << std::endl;
             }
-            std::cout << "float: " << res << "f" << std::endl;
-            std::cout << "double: " << res << std::endl;
+            else
+            {
+                std::cout << "float: -inff" << std::endl;
+                std::cout << "double: -inf" << std::endl;
+            }
         }
         return ;
     }
 
     try 
     {
-        double val = std::stod(literal);
+        double val = std::stod(param);
 
         std::cout << "char: ";
 

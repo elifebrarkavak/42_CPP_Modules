@@ -4,7 +4,7 @@ int main(int argc, char** argv)
 {
     if (argc != 2)
     {
-        std::cout << "Argc error" << std::endl;
+        std::cout << "Argc count Error" << std::endl;
         return 1;
     }
     ScalarConverter::convert(argv[1]);
