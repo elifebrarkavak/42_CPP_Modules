@@ -1,33 +1,40 @@
+#include <iostream>
 #include "iter.hpp"
 
-template <typename T>
-
-void printElement(T &content) 
+void multi_by_5_printConst(const int &x)
 {
-    std::cout << content << " ";
+    std::cout << x * 5 << " ";
 }
 
-template <typename T>
-void printElementConst(const T &content) 
+void toUpper_and_Print(const std::string &str)
 {
-    std::cout << content << " ";
+    for (size_t i = 0; i < str.length(); i++)
+        std::cout << (char)std::toupper(str[i]);
+    std::cout << " ";
 }
 
-int main(void) 
+int main()
 {
-    int intArray[] = {1, 2, 3, 4, 5};
-    std::cout << "Int Array: ";
-    ::iter(intArray, 5, printElement<int>);
+    std::cout <<"---------------------------INTEGER TESTS---------------------------" <<std::endl;
+    int arr[] = {2, 5, 10, 3};
+    std::cout << "Multiplied by 5 int array: ";
+    ::iter(arr, 4, multi_by_5_printConst);
     std::cout << std::endl;
 
-    std::string strArray[] = {"Bilisim", "Vadisi", "42", "Turkiye"};
-    std::cout << "String Array: ";
-    ::iter(strArray, 4, printElement<std::string>);
+    const int carr[] = {5, 6, 7};
+    std::cout << "Multiplied by 5 const int array: ";
+    ::iter(carr, 3, multi_by_5_printConst);
+    std::cout << std::endl;
+    std::cout <<"---------------------------STRING TESTS---------------------------" <<std::endl;
+    std::string strs[] = {"EbRar", "ElIf", "kaVak"};
+    std::cout << "String Uppercase: ";
+    ::iter(strs, 3, toUpper_and_Print);
     std::cout << std::endl;
 
-    const int constArray[] = {10, 20, 30};
-    std::cout << "Const Int Array: ";
-    ::iter(constArray, 3, printElementConst<int>);
+    const std::string str[] = {"Beyza", "KaradAg", "IsTanbul"};
+    std::cout << "Const String Uppercase: ";
+    ::iter(str, 3, toUpper_and_Print);
+
     std::cout << std::endl;
 
     return 0;

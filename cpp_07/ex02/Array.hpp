@@ -1,68 +1,69 @@
 #ifndef ARRAY_HPP
-# define ARRAY_HPP
+#define ARRAY_HPP
 
-# include <iostream>
-# include <exception>
+#include <exception>
 
 template <typename T>
-class Array {
-private:
-    T* _elements;
-    unsigned int    _size;
+class Array
+{
+    private:
+        T* _data;
+        unsigned int _size;
 
-public:
-    Array() : _elements(NULL), _size(0) {}
+    public:
+        Array() : _data(NULL), _size(0)
+        {
 
-    Array(unsigned int n) : _size(n) {
-        _elements = new T[n]();
-    }
+        }
 
-    Array(const Array& other) : _elements(NULL), _size(0) {
-        *this = other;
-    }
+        Array(unsigned int n) : _size(n)
+        {
+            if (n == 0)
+                _data = NULL;
+            else
+                _data = new T[n]();
+        }
 
-    Array& operator=(const Array& other) {
-        if (this != &other) {
-            if (_elements) {
-                delete[] _elements;
-            }
-            _size = other._size;
-            if (_size > 0) {
-                _elements = new T[_size];
-                for (unsigned int i = 0; i < _size; i++) {
-                    _elements[i] = other._elements[i];
+        Array(const Array &other) : _data(NULL), _size(0)
+        {
+            *this = other;
+        }
+
+        ~Array()
+        {
+            delete[] _data;
+        }
+
+        Array &operator=(const Array &other)
+        {
+            if (this != &other)
+            {
+                delete[] _data;
+                _size = other._size;
+
+                if (_size == 0)
+                    _data = NULL;
+                else
+                {
+                    _data = new T[_size];
+                    for (unsigned int i = 0; i < _size; i++)
+                        _data[i] = other._data[i];
                 }
-            } else {
-                _elements = NULL;
             }
+            return *this;
         }
-        return *this;
-    }
 
-    ~Array() {
-        if (_elements) {
-            delete[] _elements;
+        T &operator[](unsigned int index)
+        {
+            if (index >= _size)
+                throw std::exception();
+            return _data[index];
         }
-    }
 
-    T& operator[](unsigned int index) {
-        if (index >= _size || _elements == NULL) {
-            throw std::out_of_range("Index out of bounds");
+        unsigned int size() const
+        {
+            return _size;
         }
-        return _elements[index];
-    }
-
-    const T& operator[](unsigned int index) const {
-        if (index >= _size || _elements == NULL) {
-            throw std::out_of_range("Index out of bounds");
-        }
-        return _elements[index];
-    }
-
-    unsigned int size() const {
-        return _size;
-    }
 };
 
 #endif
-           

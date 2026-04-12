@@ -1,32 +1,44 @@
-#include "Array.hpp"
 #include <iostream>
 #include <string>
+#include "Array.hpp"
 
-int main() {
-    Array<int> empty;
-    std::cout << "Empty size: " << empty.size() << std::endl;
+int main()
+{
+    try 
+    {
+        std::cout << "--- Test 1 ---" << std::endl;
+        Array<int> v1(3);
+        v1[0] = 10;
+        v1[1] = 20;
+        v1[2] = 30;
 
-    Array<int> numbers(5);
-    for (unsigned int i = 0; i < numbers.size(); i++) {
-        numbers[i] = i * 10;
-    }
+        Array<int> v2 = v1;
+        v2[0] = 999;
 
-    std::cout << "Numbers: ";
-    for (unsigned int i = 0; i < numbers.size(); i++) {
-        std::cout << numbers[i] << " ";
-    }
-    std::cout << std::endl;
-
-    try {
-        Array<int> copy = numbers;
-        copy[0] = 999;
-        std::cout << "Original[0]: " << numbers[0] << " (should be 0)" << std::endl;
-        std::cout << "Copy[0]: " << copy[0] << " (should be 999)" << std::endl;
+        std::cout << "Orijinal v1[0]: " << v1[0] << std::endl;
+        std::cout << "Kopya v2[0]: " << v2[0] << std::endl;
         
-        std::cout << "Testing out of bounds: " << std::endl;
-        std::cout << numbers[10] << std::endl;
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        if (v1[0] != v2[0])
+            std::cout << "BASARILI" << std::endl;
+        else
+            std::cout << "HATA" << std::endl;
+
+        std::cout << "\n--- String Testi ---" << std::endl;
+        Array<std::string> words(2);
+        words[0] = "Elif";
+        words[1] = "Ebrar";
+        
+        for (unsigned int i = 0; i < words.size(); i++)
+        {
+            std::cout << words[i] << std::endl;
+        }
+
+        std::cout << "\n--- Exception Test ---" << std::endl;
+        std::cout << words[99] << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Hata: " << e.what() << std::endl;
     }
 
     return 0;

@@ -1,20 +1,18 @@
 #ifndef ITER_HPP
-# define ITER_HPP
+#define ITER_HPP
 
-# include <iostream>
-
-template <typename T, typename F>
-void iter(T *address, size_t length, F function) 
+template <typename T>
+void iter(T *array, const size_t length, void (*f)(T &))
 {
-    if (!address || !function)
-    {
-        return;
-    }
+    for (size_t i = 0; i < length; i++)
+        f(array[i]);
+}
 
-    for (size_t i = 0; i < length; i++) 
-    {
-        function(address[i]);
-    }
+template <typename T>
+void iter(const T *array, const size_t length, void (*f)(const T &))
+{
+    for (size_t i = 0; i < length; i++)
+        f(array[i]);
 }
 
 #endif
