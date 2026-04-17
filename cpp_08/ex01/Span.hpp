@@ -2,33 +2,37 @@
 #define SPAN_HPP
 
 #include <vector>
-#include <exception>
 #include <algorithm>
+#include <stdexcept>
+#include <iterator>
 
-class Span {
-private:
-    unsigned int _n;
-    std::vector<int> _storage;
-    Span();
+class Span
+{
+    private:
+        unsigned int        maxSize;
+        std::vector<int>    numbers;
 
-public:
-    Span(unsigned int n);
-    Span(const Span& other);
-    Span& operator=(const Span& other);
-    ~Span();
+        Span();
 
-    void addNumber(int number);
-    void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-    unsigned int shortestSpan() const;
-    unsigned int longestSpan() const;
+    public:
+        Span(unsigned int n);
+        Span(const Span& other);
+        Span& operator=(const Span& other);
+        ~Span();
 
-    class FullStorageException : public std::exception {
-        virtual const char* what() const throw() { return "Storage is full"; }
-    };
+        void addNumber(int number);
 
-    class NoSpanException : public std::exception {
-        virtual const char* what() const throw() { return "Not enough numbers to find a span"; }
-    };
+        template <typename Iterator>
+        void addNumber_Itarator(Iterator begin, Iterator end)
+        {
+            if (numbers.size() + static_cast<unsigned int>(std::distance(begin, end)) > maxSize)
+                throw std::runtime_error("Storage is full");
+
+            numbers.insert(numbers.end(), begin, end);
+        }
+
+        unsigned int shortestSpan() const;
+        unsigned int longestSpan() const;
 };
 
 #endif
