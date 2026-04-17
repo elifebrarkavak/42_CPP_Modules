@@ -1,52 +1,66 @@
 #include "Span.hpp"
 
-Span::Span(unsigned int n) : _n(n) {}
+Span::Span(unsigned int n) : maxSize(n)
+{
 
-Span::Span(const Span& other) { *this = other; }
+}
 
-Span& Span::operator=(const Span& other) {
-    if (this != &other) {
-        this->_n = other._n;
-        this->_storage = other._storage;
+Span::Span(const Span& other)
+{
+    *this = other;
+}
+
+Span& Span::operator=(const Span& other)
+{
+    if (this != &other)
+    {
+        this->maxSize = other.maxSize;
+        this->numbers = other.numbers;
     }
     return *this;
 }
 
-Span::~Span() {}
+Span::~Span()
+{
 
-void Span::addNumber(int number) {
-    if (_storage.size() >= _n)
-        throw FullStorageException();
-    _storage.push_back(number);
 }
 
-void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
-    if (_storage.size() + std::distance(begin, end) > _n)
-        throw FullStorageException();
-    _storage.insert(_storage.end(), begin, end);
+void Span::addNumber(int number)
+{
+    if (numbers.size() >= maxSize)
+        throw std::runtime_error("Storage is full");
+
+    numbers.push_back(number);
 }
 
-unsigned int Span::shortestSpan() const {
-    if (_storage.size() < 2)
-        throw NoSpanException();
-    
-    std::vector<int> sorted = _storage;
-    std::sort(sorted.begin(), sorted.end());
-    
-    unsigned int min = -1;
-    for (size_t i = 0; i < sorted.size() - 1; ++i) {
-        unsigned int diff = sorted[i + 1] - sorted[i];
-        if (diff < min)
-            min = diff;
+unsigned int Span::longestSpan() const
+{
+    if (numbers.size() < 2)
+        throw std::runtime_error("Not enough numbers to find a span");
+
+    int min = *std::min_element(numbers.begin(), numbers.end());
+    int max = *std::max_element(numbers.begin(), numbers.end());
+
+    return static_cast<unsigned int>(max - min);
+}
+
+unsigned int Span::shortestSpan() const
+{
+    if (numbers.size() < 2)
+        throw std::runtime_error("Not enough numbers to find a span");
+
+    std::vector<int> tmp(numbers);
+
+    std::sort(tmp.begin(), tmp.end());
+
+    unsigned int min = static_cast<unsigned int>(tmp[1] - tmp[0]);
+
+    for (size_t i = 1; i < tmp.size() - 1; i++)
+    {
+        unsigned int difference = static_cast<unsigned int>(tmp[i + 1] - tmp[i]);
+        if (difference < min)
+            min = difference;
     }
-    return min;
-}
 
-unsigned int Span::longestSpan() const {
-    if (_storage.size() < 2)
-        throw NoSpanException();
-    
-    int min = *std::min_element(_storage.begin(), _storage.end());
-    int max = *std::max_element(_storage.begin(), _storage.end());
-    return max - min;
+    return min;
 }
