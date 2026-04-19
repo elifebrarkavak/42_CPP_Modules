@@ -21,7 +21,7 @@ class Span
         void addNumber(int number);
 
         template <typename Iterator>
-        void addNumber_Itarator(Iterator begin, Iterator end)
+        void addNumber_Iterator(Iterator begin, Iterator end)
         {
             if (numbers.size() + static_cast<unsigned int>(std::distance(begin, end)) > maxSize)
                 throw std::runtime_error("Storage is full");
