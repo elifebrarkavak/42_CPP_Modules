@@ -4,7 +4,7 @@ int main(int argc, char** argv)
 {
     if (argc != 2)
     {
-        std::cerr << "Error! File is wrong." << std::endl;
+        std::cerr << "ERROR!! File is wrong." << std::endl;
         return 1;
     }
 

@@ -9,7 +9,6 @@ class Span
     private:
         unsigned int        maxSize;
         std::vector<int>    numbers;
-
         Span();
 
     public:

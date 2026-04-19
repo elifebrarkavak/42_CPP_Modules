@@ -5,6 +5,7 @@
 int main()
 {
     std::cout << "===== SUBJECT TEST =====" << std::endl;
+
     try
     {
         MutantStack<int> mstack;
@@ -12,13 +13,13 @@ int main()
         mstack.push(5);
         mstack.push(17);
 
-        std::cout << mstack.top() << std::endl;
+        std::cout << "TOP Variable: " <<mstack.top() << std::endl;
 
         mstack.pop();
 
-        std::cout << mstack.size() << std::endl;
+        std::cout << "Stack Size: " << mstack.size() << std::endl;
 
-        mstack.push(3);
+        mstack.push(3); 
         mstack.push(5);
         mstack.push(737);
         mstack.push(0);
@@ -34,7 +35,6 @@ int main()
             ++it;
         }
 
-        std::stack<int> s(mstack);
     }
     catch (const std::exception& e)
     {
@@ -42,6 +42,7 @@ int main()
     }
 
     std::cout << "\n===== LIST COMPARISON =====" << std::endl;
+
     try
     {
         std::list<int> lst;
@@ -65,10 +66,11 @@ int main()
     }
     catch (const std::exception& e)
     {
-        std::cout << "List error: " << e.what() << std::endl;
+        std::cout << "List Error: " << e.what() << std::endl;
     }
 
     std::cout << "\n===== REVERSE ITERATOR TEST =====" << std::endl;
+
     try
     {
         MutantStack<int> rev;
@@ -88,7 +90,7 @@ int main()
     }
     catch (const std::exception& e)
     {
-        std::cout << "Reverse error: " << e.what() << std::endl;
+        std::cout << "Reverse Error: " << e.what() << std::endl;
     }
 
     return 0;
