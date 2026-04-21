@@ -7,15 +7,53 @@
 #include <string>
 #include <ctime>
 #include <algorithm>
-#include <iterator>
+#include <cctype>
 
 class PmergeMe
 {
     private:
         template <typename T>
-        void fordJohnsonSort(T &container);
-        
-        bool isPositiveInteger(const std::string &s);    
+        void fordJohnsonSort(T &numbers)
+        {
+            if (numbers.size() <= 1)
+                return;
+
+            T bigger;
+            T smaller;
+
+            for (size_t i = 0; i < numbers.size(); i += 2)
+            {
+                if (i + 1 < numbers.size())
+                {
+                    if (numbers[i] > numbers[i + 1])
+                    {
+                        bigger.push_back(numbers[i]);
+                        smaller.push_back(numbers[i + 1]);
+                    }
+                    else
+                    {
+                        bigger.push_back(numbers[i + 1]);
+                        smaller.push_back(numbers[i]);
+                    }
+                }
+                else
+                    smaller.push_back(numbers[i]);
+            }
+
+            std::sort(bigger.begin(), bigger.end());
+
+            for (size_t i = 0; i < smaller.size(); i++)
+            {
+                typename T::iterator pos;
+                pos = std::lower_bound(bigger.begin(), bigger.end(), smaller[i]);
+                bigger.insert(pos, smaller[i]);
+            }
+
+            numbers = bigger;
+        }
+
+        bool isPositiveInteger(const std::string &str);
+
     public:
         PmergeMe();
         PmergeMe(const PmergeMe &other);

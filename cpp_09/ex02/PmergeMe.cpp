@@ -1,46 +1,38 @@
 #include "PmergeMe.hpp"
 #include <sys/time.h> // gettimeofday için gerekli
 
-PmergeMe::PmergeMe() {}
-PmergeMe::~PmergeMe() {}
-PmergeMe::PmergeMe(const PmergeMe &other) { *this = other; }
-PmergeMe &PmergeMe::operator=(const PmergeMe &other) { (void)other; return *this; }
+PmergeMe::PmergeMe()
+{
 
-bool PmergeMe::isPositiveInteger(const std::string &s) {
-    if (s.empty()) return false;
-    for (size_t i = 0; i < s.length(); i++)
-        if (!isdigit(s[i])) return false;
-    return true;
 }
 
-template <typename T>
-void PmergeMe::fordJohnsonSort(T &c) {
-    if (c.size() <= 1) return;
+PmergeMe::~PmergeMe()
+{
 
-    T mainChain;
-    T pend;
-    
-    for (size_t i = 0; i < c.size(); i += 2) {
-        if (i + 1 < c.size()) {
-            if (c[i] > c[i + 1]) {
-                mainChain.push_back(c[i]);
-                pend.push_back(c[i + 1]);
-            } else {
-                mainChain.push_back(c[i + 1]);
-                pend.push_back(c[i]);
-            }
-        } else {
-            pend.push_back(c[i]);
-        }
+}
+
+PmergeMe::PmergeMe(const PmergeMe &other)
+{
+     *this = other;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+    (void)other;
+    return *this;
+}
+
+bool PmergeMe::isPositiveInteger(const std::string &str)
+{
+    if (str.empty())
+        return false;
+
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (!std::isdigit(static_cast<unsigned char>(str[i])))
+            return false;
     }
-
-    std::sort(mainChain.begin(), mainChain.end());
-
-    for (size_t i = 0; i < pend.size(); i++) {
-        typename T::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), pend[i]);
-        mainChain.insert(it, pend[i]);
-    }
-    c = mainChain;
+    return true;
 }
 
 void PmergeMe::sortVector(int argc, char **argv) {
