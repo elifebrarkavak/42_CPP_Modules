@@ -47,9 +47,8 @@ void BitcoinExchange::loadDatabase(const std::string& path)
     file.close();
 }
 
-bool BitcoinExchange::validateInput(const std::string& date, const std::string& valueStr, float& value)
+bool BitcoinExchange::validateDate(const std::string& date)
 {
-
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
     {
         std::cout << "Error: bad input => " << date << std::endl;
@@ -60,56 +59,76 @@ bool BitcoinExchange::validateInput(const std::string& date, const std::string& 
     {
         if (i == 4 || i == 7)
             continue;
-        if (!isdigit(date[i]))
+        if (!std::isdigit(date[i]))
         {
             std::cout << "Error: bad input => " << date << std::endl;
             return false;
         }
     }
 
-    int year = std::atoi(date.substr(0, 4).c_str());
-    int month = std::atoi(date.substr(5, 2).c_str());
-    int day = std::atoi(date.substr(8, 2).c_str());
+    int m = std::atoi(date.substr(5, 2).c_str());
+    int d = std::atoi(date.substr(8, 2).c_str());
 
-    if (month < 1 || month > 12 || day < 1 || day > 31)
+    if (m < 1 || m > 12 || d < 1 || d > 31)
     {
         std::cout << "Error: bad input => " << date << std::endl;
         return false;
     }
 
-    if (month == 2 && day > 29)
+    if (m == 2 && d > 29)
     {
         std::cout << "Error: bad input => " << date << std::endl;
         return false;
     }
 
-    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+    if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30)
     {
         std::cout << "Error: bad input => " << date << std::endl;
         return false;
     }
 
+    return true;
+}
+
+bool BitcoinExchange::validateValue(const std::string& valueStr, float& value)
+{
     char* end;
-    value = std::strtof(valueStr.c_str(), &end);
+    double temp = std::strtod(valueStr.c_str(), &end);
 
-    if (*end != '\0' && !isspace(*end))
+    while (std::isspace(*end))
+        end++;
+
+    if (*end != '\0')
     {
         std::cout << "Error: bad input => " << valueStr << std::endl;
         return false;
     }
 
+    value = static_cast<float>(temp);
+
     if (value < 0)
     {
-        std::cout << "Error: not a positive number." << std::endl; 
+        std::cout << "Error: not a positive number." << std::endl;
         return false;
     }
 
     if (value > 1000)
     {
-        std::cout << "Error: too large a number." << std::endl; 
+        std::cout << "Error: too large a number." << std::endl;
         return false;
     }
 
+    return true;
+}
+
+bool BitcoinExchange::validateInput(const std::string& date,
+                                    const std::string& valueStr,
+                                    float& value)
+{
+    if (!validateDate(date))
+        return false;
+    if (!validateValue(valueStr, value))
+        return false;
     return true;
 }
 

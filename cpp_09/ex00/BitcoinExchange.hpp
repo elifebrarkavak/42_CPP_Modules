@@ -21,6 +21,8 @@ class BitcoinExchange
 
         void loadDatabase(const std::string& path);
         void execute(const std::string& input);
+        bool validateDate(const std::string& date);
+        bool validateValue(const std::string& valueStr, float& value);
         bool validateInput(const std::string& date, const std::string& valueStr, float& value);
 };
 
