@@ -1,6 +1,4 @@
 #include "PmergeMe.hpp"
-#include <sys/time.h>
-#include <cstdlib>
 
 PmergeMe::PmergeMe()
 {
@@ -37,18 +35,18 @@ bool PmergeMe::isPositiveInteger(const std::string &str)
 void PmergeMe::sortVector(int argc, char **argv)
 {
     std::vector<int> v;
-    struct timeval start, end;
+    struct timeval s, e;
 
     for (int i = 1; i < argc; i++)
     {
         if (!isPositiveInteger(argv[i]))
-            throw std::runtime_error("Error");
+            throw std::runtime_error("Error!! Not Positive Integer");
 
-        char *endptr;
-        long value = std::strtol(argv[i], &endptr, 10);
+        char *eptr;
+        long value = std::strtol(argv[i], &eptr, 10);
 
-        if (*endptr != '\0')
-            throw std::runtime_error("Error");
+        if (*eptr != '\0')
+            throw std::runtime_error("Error!! Not a Valid Integer");
 
         v.push_back(static_cast<int>(value));
     }
@@ -58,50 +56,50 @@ void PmergeMe::sortVector(int argc, char **argv)
         std::cout << v[i] << " ";
     std::cout << std::endl;
 
-    gettimeofday(&start, NULL);
+    gettimeofday(&s, NULL);
     fordJohnsonSort(v);
-    gettimeofday(&end, NULL);
+    gettimeofday(&e, NULL);
 
     std::cout << "After:  ";
     for (size_t i = 0; i < v.size(); i++)
         std::cout << v[i] << " ";
     std::cout << std::endl;
 
-    double elapsed = (end.tv_sec - start.tv_sec) * 1e6
-                   + (end.tv_usec - start.tv_usec);
+    double exectime = (e.tv_sec - s.tv_sec) * 1e6
+                   + (e.tv_usec - s.tv_usec);
 
     std::cout << "Time to process " << v.size()
               << " elements with std::vector : "
-              << elapsed << " us" << std::endl;
+              << exectime << " us" << std::endl;
 }
 
 void PmergeMe::sortDeque(int argc, char **argv)
 {
     std::deque<int> d;
-    struct timeval start, end;
+    struct timeval s, e;
 
     for (int i = 1; i < argc; i++)
     {
         if (!isPositiveInteger(argv[i]))
-            throw std::runtime_error("Error");
+            throw std::runtime_error("Error!! Not Positive Integer");
 
-        char *endptr;
-        long value = std::strtol(argv[i], &endptr, 10);
+        char *eptr;
+        long value = std::strtol(argv[i], &eptr, 10);
 
-        if (*endptr != '\0')
-            throw std::runtime_error("Error");
+        if (*eptr != '\0')
+            throw std::runtime_error("Error!! Not a Valid Integer");
 
         d.push_back(static_cast<int>(value));
     }
 
-    gettimeofday(&start, NULL);
+    gettimeofday(&s, NULL);
     fordJohnsonSort(d);
-    gettimeofday(&end, NULL);
+    gettimeofday(&e, NULL);
 
-    double elapsed = (end.tv_sec - start.tv_sec) * 1e6
-                   + (end.tv_usec - start.tv_usec);
+    double exectime = (e.tv_sec - s.tv_sec) * 1e6
+                   + (e.tv_usec - s.tv_usec);
 
     std::cout << "Time to process " << d.size()
               << " elements with std::deque  : "
-              << elapsed << " us" << std::endl;
+              << exectime << " us" << std::endl;
 }
