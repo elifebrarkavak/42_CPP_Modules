@@ -66,6 +66,7 @@ bool BitcoinExchange::validateDate(const std::string& date)
         }
     }
 
+    int y = std::atoi(date.substr(0, 4).c_str());
     int m = std::atoi(date.substr(5, 2).c_str());
     int d = std::atoi(date.substr(8, 2).c_str());
 
@@ -75,10 +76,24 @@ bool BitcoinExchange::validateDate(const std::string& date)
         return false;
     }
 
-    if (m == 2 && d > 29)
+   if (m == 2)
     {
-        std::cout << "Error: bad input => " << date << std::endl;
-        return false;
+        if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))
+        {
+            if (d > 29)
+            {
+                std::cout << "Error: bad input => " << date << std::endl;
+                return false;
+            }
+        }
+        else
+        {
+            if (d > 28)
+            {
+                std::cout << "Error: bad input => " << date << std::endl;
+                return false;
+            }
+        }
     }
 
     if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30)
@@ -121,9 +136,7 @@ bool BitcoinExchange::validateValue(const std::string& valueStr, float& value)
     return true;
 }
 
-bool BitcoinExchange::validateInput(const std::string& date,
-                                    const std::string& valueStr,
-                                    float& value)
+bool BitcoinExchange::validateInput(const std::string& date, const std::string& valueStr, float& value)
 {
     if (!validateDate(date))
         return false;
