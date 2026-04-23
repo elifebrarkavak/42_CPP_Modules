@@ -159,15 +159,15 @@ void BitcoinExchange::execute(const std::string& inputPath)
 
     while (std::getline(file, line))
     {
-        size_t pipe = line.find('|');
-        if (pipe == std::string::npos)
+        size_t p = line.find('|');
+        if (p == std::string::npos)
         {
             std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
 
-        std::string date = line.substr(0, pipe - 1);
-        std::string valueStr = line.substr(pipe + 1);
+        std::string date = line.substr(0, p - 1);
+        std::string valueStr = line.substr(p + 1);
         float value;
 
         if (validateInput(date, valueStr, value))
